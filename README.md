@@ -1,0 +1,2 @@
+# learningGo
+small go project
