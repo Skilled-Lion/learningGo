@@ -13,17 +13,22 @@ type person struct {
 }
 
 func main() {
-	jim := person{
-		firstName: "jim",
-		lastName:  "jam",
-		contactInfo: contactInfo{
-			email:   "jim@j.com",
-			zipCode: 182839,
-		},
+	var cccc map[string]string
+	bbbb := make(map[string]string)
+	colors := map[string]string{
+		"red":  "reeeed",
+		"blue": "bbbbblllluuueee",
 	}
+	bbbb["aaaa"] = "aaas"
+	printMap(colors)
+	delete(colors, "red")
+	fmt.Println(cccc, colors, bbbb)
+}
 
-	jim.updateName("jiiim")
-	jim.print()
+func printMap(m map[string]string) {
+	for a, b := range m {
+		fmt.Println(a + " => " + b)
+	}
 }
 
 func (pointerToPerson *person) updateName(newName string) {
