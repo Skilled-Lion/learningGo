@@ -2,39 +2,28 @@ package main
 
 import "fmt"
 
-type contactInfo struct {
-	email   string
-	zipCode int
+type bot interface {
+	getGreeting() string
 }
-type person struct {
-	firstName string
-	lastName  string
-	contactInfo
-}
+type englishBot struct {}
+type spanishBot struct {}
 
 func main() {
-	var cccc map[string]string
-	bbbb := make(map[string]string)
-	colors := map[string]string{
-		"red":  "reeeed",
-		"blue": "bbbbblllluuueee",
-	}
-	bbbb["aaaa"] = "aaas"
-	printMap(colors)
-	delete(colors, "red")
-	fmt.Println(cccc, colors, bbbb)
+	eb := englishBot{}
+	sb := spanishBot{}
+
+	printGreeting(eb)
+	printGreeting(sb)
 }
 
-func printMap(m map[string]string) {
-	for a, b := range m {
-		fmt.Println(a + " => " + b)
-	}
+func printGreeting (b bot) {
+	fmt.Println(b.getGreeting())
 }
 
-func (pointerToPerson *person) updateName(newName string) {
-	(*pointerToPerson).firstName = newName
+func (englishBot) getGreeting() string {
+	return "Hi There!"
 }
 
-func (p person) print() {
-	fmt.Printf("%+v", p)
+func (spanishBot) getGreeting() string {
+	return "Hola!"
 }
