@@ -2,25 +2,17 @@ package main
 
 import (
 	"fmt"
-	"net/http"
 	"os"
 	"io"
 )
 
-type logWriter struct {}
 
 func main(){
-	resp, err := http.Get("http://www.google.com");
+	fileName := os.Args[1];
+	file, err := os.Open(fileName);
 	if(err != nil){
-		fmt.Println("Error", err);
-		os.Exit(1)
+		fmt.Println("error cocured : ", err);
 	}
-	lw := logWriter{}
-	io.Copy(lw, resp.Body)
-}
 
-func (logWriter) Write(bs []byte) (int, error){
-	fmt.Println(string(bs))
-	fmt.Println("Just wrote out this many bites :", len(bs))
-	return len(bs), nil
+	io.Copy(os.Stdout, file)
 }
